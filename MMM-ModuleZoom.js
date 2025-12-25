@@ -1,11 +1,10 @@
 /* global Module */
 
 /* Magic Mirror
- * Module: MMM-zoom
+ * Module: MMM-ModuleZoom
  *
- * Scale the entire UI with this plugin
- *
- * GNU GPL v3.0
+ * By Stefan Nachtrab
+ * MIT Licensed.
  */
 
 Module.register("MMM-ModuleZoom", {
@@ -31,28 +30,32 @@ Module.register("MMM-ModuleZoom", {
 			if (this.config.mode === 'global') {
 				document.getElementsByTagName('body')[0].style.zoom = this.config.zoom;
 			} else {
-				var positions = [
-					{key: 'top_bar', selector: '.region.top.bar .container .module-content'},
-					{key: 'bottom_bar', selector: '.region.bottom.bar .container .module-content'},
-					{key: 'top_left', selector: '.region.top.left .container .module-content'},
-					{key: 'bottom_left', selector: '.region.bottom.left .container .module-content'},
-					{key: 'top_center', selector: '.region.top.center .container .module-content'},
-					{key: 'bottom_center', selector: '.region.bottom.center .container .module-content'},
-					{key: 'top_right', selector: '.region.top.right .container .module-content'},
-					{key: 'bottom_right', selector: '.region.bottom.right .container .module-content'},
-					{key: 'upper_third', selector: '.region.upper.third .container .module-content'},
-					{key: 'middle_center', selector: '.region.middle.center .container .module-content'},
-					{key: 'lower_third', selector: '.region.lower.third .container .module-content'}
-				];
-				MM.getModules().exceptModule(this).map(module => {
-					if(module.data.position) {
-						let position = positions.filter(position => position.key === module.data.position)[0];
-						console.log(position);
-						if(position !== -1) {
-							document.querySelector(position.selector).style.zoom = this.config[position.key].zoom;
-						}
-					}
-				});
+        const positions = [
+          {key: 'top_bar', selector: '.region.top.bar'},
+          {key: 'bottom_bar', selector: '.region.bottom.bar'},
+          {key: 'top_left', selector: '.region.top.left'},
+          {key: 'bottom_left', selector: '.region.bottom.left'},
+          {key: 'top_center', selector: '.region.top.center'},
+          {key: 'bottom_center', selector: '.region.bottom.center'},
+          {key: 'top_right', selector: '.region.top.right'},
+          {key: 'bottom_right', selector: '.region.bottom.right'},
+          {key: 'upper_third', selector: '.region.upper.third'},
+          {key: 'middle_center', selector: '.region.middle.center'},
+          {key: 'lower_third', selector: '.region.lower.third'}
+        ];
+
+        positions.forEach(pos => {
+          const configValue = this.config[pos.key] ? this.config[pos.key].zoom : null;
+
+          if (configValue && configValue !== 1) {
+            const elements = document.querySelectorAll(`${pos.selector} .module-content`);
+
+            elements.forEach(el => {
+              el.style.zoom = configValue;
+              el.style.setProperty("zoom", configValue, "important");
+            });
+          }
+        });
 			}
 		}
 	},

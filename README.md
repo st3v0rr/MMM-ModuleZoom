@@ -12,6 +12,12 @@ git clone https://github.com/st3v0rr/MMM-ModuleZoom.git
 ```
 This module has no npm dependencies.
 
+## Update
+```bash
+cd ~/MagicMirror/modules/MMM-SolarEdge
+git pull
+```
+
 ## Using the module
 
 To use this module, add the following configuration block to the modules array in the `config/config.js` file:

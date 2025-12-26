@@ -1,0 +1,27 @@
+{
+	"name": "MMM-ModuleZoom",
+	"version": "1.0.0",
+	"description": "MagicMirror module for zooming and resizing other modules globally or based on the position.",
+	"main": "MMM-ModuleZoom.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/st3v0rr/MMM-ModuleZoom.git"
+	},
+	"keywords": [
+		"magicmirror",
+		"magicmirror-module",
+		"module",
+		"zoom"
+	],
+	"author": "Stefan Nachtrab",
+	"license": "MIT",
+	"devDependencies": {
+		"babel-eslint": "^10.1.0",
+		"eslint": "^9.39.2",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-prettier": "^5.5.4",
+		"prettier": "^3.7.4",
+		"prettier-eslint": "^16.4.2",
+		"prettier-eslint-cli": "^8.0.1"
+	}
+}
